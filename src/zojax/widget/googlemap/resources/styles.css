@@ -1,0 +1,10 @@
+/* zrt-cssregistry: */
+
+@media all {
+
+  .widget-googlemap-maplocation-map {
+    height:300px;
+    width:400px;
+  }
+
+}

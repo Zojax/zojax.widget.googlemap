@@ -1,0 +1,44 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:z3c="http://namespaces.zope.org/z3c"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   xmlns:browser="http://namespaces.zope.org/browser"
+   i18n_domain="zojax.widget.googlemap">
+
+  <!-- Boolean -->
+  <zojax:content
+     title="Map location"
+     name="persistent.field.maplocation"
+     schema=".interfaces.IMapLocationPersistent"
+     type="zojax.persistent.fields.interfaces.IFieldType"
+     containers="zojax.persistent.fields.interfaces.IFieldsContainer"
+     description="Map location (with map and marker)"
+     class=".persistentfield.MapLocation"
+     permission="zojax.AddPersistentField" />
+
+  <class class=".persistentfield.MapLocation">
+    <require
+       permission="zope.View"
+       interface="zojax.persistent.fields.interfaces.IField
+      .interfaces.IMapLocation" />
+    <require
+       permission="zojax.ModifyContent"
+       set_schema="zojax.persistent.fields.interfaces.IField
+       .interfaces.IMapLocation" />
+  </class>
+
+  <adapter
+     name="zojax.widget.googlemap-checker"
+     factory=".persistentfield.MapLocationChecker" />
+     
+  <browser:icon
+     name="zmi_icon"
+     for="zojax.content.persistent_field_maplocation"
+     file="resources/icon.png" />
+  
+  <browser:icon
+     name="zmi_icon"
+     for=".interfaces.IMapLocationPersistent"
+     file="resources/icon.png" />
+
+</configure>

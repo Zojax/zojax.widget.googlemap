@@ -1,0 +1,51 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:z3c="http://namespaces.zope.org/z3c"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   xmlns:zcml="http://namespaces.zope.org/zcml"
+   i18n_domain="zojax.widget.googlemap">
+
+  <!-- widgets -->
+  <adapter factory=".maplocation.MapLocationFieldWidget" />
+  <adapter factory=".maplocation.MapLocationDataConverter" />
+  
+  <z3c:widgetTemplate
+      mode="input"
+      widget=".interfaces.IMapLocationWidget"
+      layer="z3c.form.interfaces.IFormLayer"
+      template="maplocationwidget_input.pt"
+      />
+        
+  <!-- widget display -->
+  <z3c:widgetTemplate
+     mode="display"
+     widget=".interfaces.IMapLocationWidget"
+     layer="z3c.form.interfaces.IFormLayer"
+     template="maplocationwidget_display.pt" />
+     
+  <zojax:resourceinclude
+     name="zojax-widget-googlemap.js"
+     file="resources/googlemap.js"
+     require="jquery" library="googlemap-widgets" type="javascript"
+     mapping=".css:zrt" />
+     
+  <!-- styles -->
+  <zojax:resourceinclude
+     name="zojax-widget-googlemap.css"
+     library="zojax"
+     type="stylesheet" file="resources/styles.css" filetype="zrt" />
+     
+  <utility
+     name="zojax.widget.googlemap.mapTypes"
+     component=".vocabulary.mapTypesVocabulary"
+     provides="zope.schema.interfaces.IVocabularyFactory" />
+       
+  <include zcml:condition="installed zojax.persistent.fields"
+           file="persistentfield.zcml" />
+           
+  <include file="configlet.zcml" />
+  
+  <include file="geocode.zcml" />
+  
+
+</configure>

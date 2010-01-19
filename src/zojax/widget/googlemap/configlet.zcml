@@ -1,0 +1,18 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:z3c="http://namespaces.zope.org/z3c"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   xmlns:zcml="http://namespaces.zope.org/zcml"
+   i18n_domain="zojax.widget.googlemap">
+
+  <!-- configlet -->
+  <zojax:configlet
+     name="ui.googlemap"
+     title="Google map"
+     description="This area allows you to configure google map related settings ."
+     class=".configlet.GoogleMapConfiglet"
+     schema=".interfaces.IGoogleMapConfiglet"
+     permission="zojax.Configure" />
+
+
+</configure>

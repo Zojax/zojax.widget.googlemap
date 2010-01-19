@@ -1,0 +1,27 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:z3c="http://namespaces.zope.org/z3c"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   xmlns:zcml="http://namespaces.zope.org/zcml"
+   i18n_domain="zojax.widget.googlemap">
+
+  <class class=".geocode.Geocode">
+    <require
+       permission="zope.View"
+       interface=".interfaces.IGeocode" />
+    <require
+       permission="zojax.ModifyContent"
+       set_schema=".interfaces.IGeocode" />
+  </class>
+  
+  <class class=".geocode.MapGeocode">
+    <require
+       permission="zope.View"
+       interface=".interfaces.IMapGeocode" />
+    <require
+       permission="zojax.ModifyContent"
+       set_schema=".interfaces.IMapGeocode" />
+  </class>
+  
+
+</configure>

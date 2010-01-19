@@ -1,0 +1,31 @@
+Metadata-Version: 1.0
+Name: zojax.widget.googlemap
+Version: 0
+Summary: Google map widgets
+Home-page: http://zojax.net/
+Author: Anatoly Bubenkov
+Author-email: bubenkoff@gmail.com
+License: ZPL 2.1
+Description: Detailed Documentation
+        ======================
+        
+        
+        =======
+        CHANGES
+        =======
+        
+        0.1.0 (Unreleased)
+        ------------------
+        
+        - Initial release
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Zope Public License
+Classifier: Programming Language :: Python
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Framework :: Zope3
