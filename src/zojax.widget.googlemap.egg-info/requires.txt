@@ -17,3 +17,4 @@ zojax.security
 zojax.autoinclude
 zojax.content.type
 zojax.content.forms
+zojax.persistent.fields
