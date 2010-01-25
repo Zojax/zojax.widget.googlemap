@@ -1,5 +1,5 @@
 ===================
-ExtJS Editor widget
+Google maps widget
 ===================
 
     >>> from pytz import utc
