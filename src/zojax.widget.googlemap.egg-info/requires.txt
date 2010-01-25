@@ -1,11 +1,8 @@
 setuptools
-pytz
-z3c.form
 zojax.js.jquery
 zojax.resource
 zojax.resourcepackage
 zojax.skintool
-zojax.formatter
 
 [test]
 zope.app.testing
