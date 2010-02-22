@@ -41,6 +41,7 @@ $(document).ready( function() {
                                           geocodeButtonId:'%(geocodeButtonId)s',
                                           readonly: %(readonly)s,
                                           value: %(value)s,
+                                          message: %(message)s,
                                           type:%(type)s});
 });
 </script>"""
@@ -55,7 +56,7 @@ class MapLocationWidget(TextWidget):
 
     mapStyle = ''
 
-    placeMessage = _(u'Place marker')
+    placeMessage = _(u'Click on the map to place a marker')
 
     @property
     def mapId(self):
@@ -85,7 +86,7 @@ class MapLocationWidget(TextWidget):
                 'type': 'google.maps.MapTypeId.%s'%self.field.type,
                 'klass': self.klass,
                 'value': simplejson.dumps(value),
-                'message': translate(self.placeMessage),
+                'message': simplejson.dumps(translate(self.placeMessage)),
                 'readonly': str(self.readonly \
                                 or self.mode == interfaces.DISPLAY_MODE).lower(),
                 }, ('googlemap-widgets',))

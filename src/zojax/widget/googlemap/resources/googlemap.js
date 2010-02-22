@@ -41,13 +41,6 @@ zojax.googlemap = {
             initMarker(point, config.readonly);
         }
         else {
-            if (!config.readonly) {
-                var infowindow = new google.maps.InfoWindow({
-                    content: config.message,
-                    position: map.getCenter()
-                    });
-                infowindow.open(map);
-            }
             var markerListener = google.maps.event.addListener(map, "click", function(event) {
                 if (!map.marker) {
                     initMarker(event.latLng, config.readonly)
@@ -55,7 +48,13 @@ zojax.googlemap = {
                 else {
                     google.maps.event.removeListener(markerListener);
                 }
-            })
+            });
+            if (!config.readonly) {
+                setTimeout(function () {
+                    map.infowindow.setContent(config.message);
+                    map.infowindow.open(map, map.getCenter());
+                }, 1000)
+            };
         };
         var markerUpdateListener = google.maps.event.addListener(map, "bounds_changed", function() {
             if (map.marker) {
