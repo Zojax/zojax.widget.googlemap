@@ -1,6 +1,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       tal:omit-tag="">
+    <div class="geocode-selected">
+      <label tal:attributes="for view/labelId">Selected location</label>
+      <input type="textbox" readonly="true" tal:attributes="id view/labelId" value="" />
+    </div>
     <input id="" name="" class="" title="" lang="" disabled=""
            readonly="" alt="" tabindex="" accesskey="" size="" maxlength=""
            style="" value="" type="hidden"

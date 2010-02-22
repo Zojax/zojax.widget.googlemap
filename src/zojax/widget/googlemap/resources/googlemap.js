@@ -50,8 +50,8 @@ zojax.googlemap = {
                 }
             });
             if (!config.readonly) {
-                map.infowindow.setContent(config.message);
-                map.infowindow.open(map, map.getCenter());
+                //map.infowindow.setContent(config.message);
+                //map.infowindow.open(map, map.getCenter());
             };
         };
         var markerUpdateListener = google.maps.event.addListener(map, "bounds_changed", function() {
@@ -74,7 +74,7 @@ zojax.googlemap = {
         {
             var marker = new google.maps.Marker({position: point, draggable: !readonly});
             if (!readonly) {
-                google.maps.event.addListener(marker, "dragend", function() {
+                google.maps.event.addListener(marker, "position_changed", function() {
                   updateMarkerPos(marker);
                   });
             }
@@ -106,6 +106,7 @@ zojax.googlemap = {
                                     'zoom': map.getZoom(),
                                     'geocode': geocode});
                                 map.infowindow.setContent(response[1].formatted_address);
+                                map.label.val(response[1].formatted_address)
                             }
                             catch (e) {
                                 map.infowindow.setContent("Can't get political location, please move marker");
@@ -118,6 +119,7 @@ zojax.googlemap = {
         
         map.geocodeButton = $('#' + config.geocodeButtonId);
         map.address = $('#' + config.addressId);
+        map.label = $('#' + config.labelId);
         
         var handler = function () {
             var coder = new google.maps.Geocoder();
