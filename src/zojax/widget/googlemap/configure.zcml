@@ -26,7 +26,7 @@
   <zojax:resourceinclude
      name="zojax-widget-googlemap.js"
      file="resources/googlemap.js"
-     require="jquery" library="googlemap-widgets" type="javascript"
+     require="jquery-plugins" library="googlemap-widgets" type="javascript"
      mapping=".css:zrt" />
      
   <!-- styles -->

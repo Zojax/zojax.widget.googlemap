@@ -1,5 +1,6 @@
 setuptools
 zojax.js.jquery
+zojax.jquery.json
 zojax.resource
 zojax.resourcepackage
 zojax.skintool

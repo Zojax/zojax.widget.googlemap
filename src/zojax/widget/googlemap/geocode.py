@@ -15,7 +15,7 @@
 
 $Id$
 """
-from zope import interface
+from zope import interface, schema
 from zope.schema import Object, fieldproperty
 
 from interfaces import IGeocode, IMapGeocode
@@ -35,7 +35,12 @@ class Geocode(object):
     def update(self, latitude, longitude):
         self.latitude = latitude
         self.longitude = longitude
-
+        
+    def getValue(self):
+        return {'position': {'latitude': self.latitude,
+                             'longitude': self.longitude,
+                             }
+               }
 
 class MapGeocode(Geocode):
 
@@ -46,10 +51,22 @@ class MapGeocode(Geocode):
     centerLongitude = fieldproperty.FieldProperty(IMapGeocode['centerLongitude'])
 
     zoom = fieldproperty.FieldProperty(IMapGeocode['zoom'])
+    
+    geocode = fieldproperty.FieldProperty(IMapGeocode['geocode'])
 
-    def __init__(self, latitude, longitude, centerLatitude, centerLongitude, zoom):
+    def __init__(self, latitude, longitude, centerLatitude, centerLongitude, zoom, geocode):
         self.latitude = latitude
         self.longitude = longitude
         self.centerLatitude = centerLatitude
         self.centerLongitude = centerLongitude
         self.zoom = zoom
+        self.geocode = geocode
+        
+    def getValue(self):
+        res = super(MapGeocode, self).getValue()
+        res['center'] = {'latitude': self.centerLatitude,
+                         'longitude': self.centerLongitude,
+                         }
+        res['zoom'] = self.zoom
+        res['geocode'] = self.geocode
+        return res

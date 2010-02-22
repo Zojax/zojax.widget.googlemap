@@ -17,6 +17,7 @@ $Id$
 """
 import time
 from datetime import date, datetime
+import simplejson
 
 from zope import interface, component
 from zope.i18n import translate
@@ -63,11 +64,6 @@ class MapLocationWidget(TextWidget):
         location = 'false'
         if self.value:
             value = component.getMultiAdapter((self.field, self), interfaces.IDataConverter).toFieldValue(self.value)
-            location = {'latitude': value.latitude,
-                        'longitude': value.longitude,
-                        'centerLatitude': value.centerLatitude,
-                        'centerLongitude': value.centerLongitude,
-                        'zoom': value.zoom}
 
         includeInplaceSource(jssource%{
                 'id': self.id,
@@ -75,7 +71,7 @@ class MapLocationWidget(TextWidget):
                 'name': self.name,
                 'type': 'google.maps.MapTypeId.%s'%self.field.type,
                 'klass': self.klass,
-                'value': location,
+                'value': simplejson.dumps(value.getValue()),
                 'message': translate(self.placeMessage),
                 'readonly': str(self.readonly \
                                 or self.mode == interfaces.DISPLAY_MODE).lower(),
@@ -97,19 +93,18 @@ class MapLocationDataConverter(BaseDataConverter):
     def toWidgetValue(self, value):
         if value is self.field.missing_value:
             return u''
-        return '(%s, %s):(%s, %s):%s' % (value.latitude, value.longitude, \
-                                        value.centerLatitude, value.centerLongitude, \
-                                        value.zoom)
+        return simplejson.dumps(value.getValue())
 
     def toFieldValue(self, value):
         if value == u'':
             return self.field.missing_value
         try:
-            value = value.replace('(','').replace(')','')
-            geocode, center, zoom = map(lambda x: x.strip(), value.strip().split(':'))
-            lat, lon = map(lambda x: float(x.strip()), geocode.strip().split(','))
-            centerLat, centerLon = map(lambda x: float(x.strip()), center.strip().split(','))
-            zoom = int(zoom)
-            return MapGeocode(lat, lon, centerLat, centerLon, zoom)
+            fvalue = simplejson.loads(value)
+            return MapGeocode(fvalue['position']['latitude'],
+                              fvalue['position']['longitude'],
+                              fvalue['center']['latitude'],
+                              fvalue['center']['longitude'],
+                              fvalue['zoom'],
+                              fvalue['geocode'])
         except (IndexError, TypeError, ValueError), err:
             raise FormatterValidationError(err.args[0], value)

@@ -67,6 +67,9 @@ class IGeocode(interface.Interface):
     def update(latitude, longitude):
         """Update the latitude and longitude with the given values."""
 
+    def getValue():
+        """ get value """
+
 
 class IMapGeocode(IGeocode):
 
@@ -84,4 +87,9 @@ class IMapGeocode(IGeocode):
         title=_(u"Zoom level"),
         description=_(u"Map zoom level."),
         min=0,
+        required=False)
+    
+    geocode = schema.Dict(
+        title=_(u"Geocode"),
+        description=_(u"Political geocode."),
         required=False)
