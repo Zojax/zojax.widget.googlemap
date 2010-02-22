@@ -36,4 +36,8 @@
                          class view/mapKlass;
                          style view/mapStyle">
     </div>
+    <div class="geocode-search">
+      <input type="textbox" value="Enter location" tal:attributes="id view/addressId">
+      <input type="button" value="Search for location" tal:attributes="id view/geocodeButtonId">
+    </div>
 </html>

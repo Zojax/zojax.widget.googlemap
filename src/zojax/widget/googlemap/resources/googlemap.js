@@ -71,7 +71,7 @@ zojax.googlemap = {
                     map.fitBounds(bounds);
                 }
             }
-        }, 1000);
+        }, 2000);
         
         function initMarker(point, readonly)
         {
@@ -114,9 +114,42 @@ zojax.googlemap = {
                                 map.infowindow.setContent("Can't get political location, please move marker");
                             }
                         }
-                    }, 1000);
+                    }, 2000);
               })
             }
-        }
+        };
+        
+        map.geocodeButton = $('#' + config.geocodeButtonId);
+        map.address = $('#' + config.addressId);
+        
+        var handler = function () {
+            var coder = new google.maps.Geocoder();
+            setTimeout(function () {
+                coder.geocode({'address':map.address.val()}, function(response, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        map.marker.setPosition(response[0].geometry.location);
+                        updateMarkerPos(map.marker);
+                        var bounds = map.getBounds();
+                        if (!bounds.contains(map.marker.getPosition())) {
+                            bounds.extend(map.marker.getPosition());
+                            map.fitBounds(bounds);
+                        }
+                    }
+                    else {
+                        alert("Can't find the location");
+                        map.address.val('Enter location');
+                        map.address.select()
+                    }
+                }, 1000);
+        })
+        };
+        
+        map.geocodeButton.click(handler);
+        map.address.keypress(function(e){
+            if (e.which == 13) {
+                map.geocodeButton.click();
+                return false
+            }
+        })
     }
 };

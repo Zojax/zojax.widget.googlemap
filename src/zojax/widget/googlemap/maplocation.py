@@ -37,6 +37,8 @@ jssource = """<script type="text/javascript">
 $(document).ready( function() {
         zojax.googlemap.initializeWidget({id:'%(id)s',
                                           mapId:'%(mapId)s',
+                                          addressId:'%(addressId)s',
+                                          geocodeButtonId:'%(geocodeButtonId)s',
                                           readonly: %(readonly)s,
                                           value: %(value)s,
                                           type:%(type)s});
@@ -58,6 +60,14 @@ class MapLocationWidget(TextWidget):
     @property
     def mapId(self):
         return self.id + '-map'
+    
+    @property
+    def addressId(self):
+        return self.id + '-address'
+    
+    @property
+    def geocodeButtonId(self):
+        return self.id + '-geocode-button'
 
     def render(self):
         component.getUtility(IGoogleMapConfiglet).includeJsSource()
@@ -69,6 +79,8 @@ class MapLocationWidget(TextWidget):
         includeInplaceSource(jssource%{
                 'id': self.id,
                 'mapId': self.mapId,
+                'addressId': self.addressId,
+                'geocodeButtonId': self.geocodeButtonId,
                 'name': self.name,
                 'type': 'google.maps.MapTypeId.%s'%self.field.type,
                 'klass': self.klass,
