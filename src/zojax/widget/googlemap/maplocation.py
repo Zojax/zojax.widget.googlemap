@@ -62,8 +62,9 @@ class MapLocationWidget(TextWidget):
     def render(self):
         component.getUtility(IGoogleMapConfiglet).includeJsSource()
         location = 'false'
-        if self.value:
-            value = component.getMultiAdapter((self.field, self), interfaces.IDataConverter).toFieldValue(self.value)
+        value = self.value
+        if value:
+            value = component.getMultiAdapter((self.field, self), interfaces.IDataConverter).toFieldValue(self.value).getValue()
 
         includeInplaceSource(jssource%{
                 'id': self.id,
@@ -71,7 +72,7 @@ class MapLocationWidget(TextWidget):
                 'name': self.name,
                 'type': 'google.maps.MapTypeId.%s'%self.field.type,
                 'klass': self.klass,
-                'value': simplejson.dumps(value.getValue()),
+                'value': simplejson.dumps(value),
                 'message': translate(self.placeMessage),
                 'readonly': str(self.readonly \
                                 or self.mode == interfaces.DISPLAY_MODE).lower(),
