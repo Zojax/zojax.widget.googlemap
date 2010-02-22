@@ -71,13 +71,13 @@ zojax.googlemap = {
                     map.fitBounds(bounds);
                 }
             }
-        }, 2000);
+        }, 1000);
         
         function initMarker(point, readonly)
         {
             var marker = new google.maps.Marker({position: point, draggable: !readonly});
             if (!readonly) {
-                google.maps.event.addListener(marker, "position_changed", function() {
+                google.maps.event.addListener(marker, "dragend", function() {
                   updateMarkerPos(marker);
                   });
             }
@@ -114,7 +114,7 @@ zojax.googlemap = {
                                 map.infowindow.setContent("Can't get political location, please move marker");
                             }
                         }
-                    }, 2000);
+                    }, 1000);
               })
             }
         }

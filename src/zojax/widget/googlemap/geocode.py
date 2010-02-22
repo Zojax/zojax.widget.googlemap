@@ -55,10 +55,10 @@ class MapGeocode(Geocode):
     geocode = fieldproperty.FieldProperty(IMapGeocode['geocode'])
 
     def __init__(self, latitude, longitude, centerLatitude, centerLongitude, zoom, geocode):
-        self.latitude = latitude
-        self.longitude = longitude
-        self.centerLatitude = centerLatitude
-        self.centerLongitude = centerLongitude
+        self.latitude = float(latitude)
+        self.longitude = float(longitude)
+        self.centerLatitude = float(centerLatitude)
+        self.centerLongitude = float(centerLongitude)
         self.zoom = zoom
         self.geocode = geocode
         
