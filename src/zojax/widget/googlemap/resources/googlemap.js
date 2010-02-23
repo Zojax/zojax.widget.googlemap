@@ -1,4 +1,4 @@
-zojax = {};
+var zojax = zojax || {version:'0.0.1'};
 zojax.googlemap = {
     initializeWidget: function(config){
         /*config is of the form
@@ -28,7 +28,7 @@ zojax.googlemap = {
                        zoom: config.zoom,
                        mapTypeControl: config.mapTypeControl,
                        navigationControl: config.navigationControl,
-                       scaleControl: config.scaleControl,
+                       scaleControl: config.scaleControl
                        };
         var map = new google.maps.Map(document.getElementById(config.mapId), options);
         map.setCenter(center);
