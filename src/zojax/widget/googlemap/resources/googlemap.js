@@ -1,4 +1,5 @@
-zojax = zojax || {};
+if (!zojax)
+    zojax = zojax || {};
 zojax.googlemap = {
     initializeWidget: function(config){
         /*config is of the form
