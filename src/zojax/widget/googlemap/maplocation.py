@@ -39,7 +39,6 @@ $(document).ready( function() {
                                           mapId:'%(mapId)s',
                                           addressId:'%(addressId)s',
                                           geocodeButtonId:'%(geocodeButtonId)s',
-                                          labelId:'%(labelId)s',
                                           readonly: %(readonly)s,
                                           value: %(value)s,
                                           message: %(message)s,
@@ -70,10 +69,6 @@ class MapLocationWidget(TextWidget):
     @property
     def geocodeButtonId(self):
         return self.id + '-geocode-button'
-    
-    @property
-    def labelId(self):
-        return self.id + '-label'
 
     def render(self):
         component.getUtility(IGoogleMapConfiglet).includeJsSource()
@@ -87,7 +82,6 @@ class MapLocationWidget(TextWidget):
                 'mapId': self.mapId,
                 'addressId': self.addressId,
                 'geocodeButtonId': self.geocodeButtonId,
-                'labelId': self.labelId,
                 'name': self.name,
                 'type': 'google.maps.MapTypeId.%s'%self.field.type,
                 'klass': self.klass,

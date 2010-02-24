@@ -106,7 +106,7 @@ zojax.googlemap = {
                                     'zoom': map.getZoom(),
                                     'geocode': geocode});
                                 map.infowindow.setContent(response[1].formatted_address);
-                                map.label.val(response[1].formatted_address)
+                                map.address.val(response[1].formatted_address)
                             }
                             catch (e) {
                                 map.infowindow.setContent("Can't get political location, please move marker");
@@ -119,7 +119,6 @@ zojax.googlemap = {
         
         map.geocodeButton = $('#' + config.geocodeButtonId);
         map.address = $('#' + config.addressId);
-        map.label = $('#' + config.labelId);
         
         var handler = function () {
             var coder = new google.maps.Geocoder();
