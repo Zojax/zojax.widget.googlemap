@@ -26,6 +26,7 @@ src/zojax/widget/googlemap/maplocationwidget_display.pt
 src/zojax/widget/googlemap/maplocationwidget_input.pt
 src/zojax/widget/googlemap/persistentfield.py
 src/zojax/widget/googlemap/persistentfield.zcml
+src/zojax/widget/googlemap/utils.py
 src/zojax/widget/googlemap/vocabulary.py
 src/zojax/widget/googlemap/resources/googlemap.js
 src/zojax/widget/googlemap/resources/icon.png
