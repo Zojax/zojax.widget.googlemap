@@ -29,8 +29,12 @@ def geocode(**kw):
     if response['status'] != 'OK':
         raise UnknownGeocodeError(response)
     resp = response['results'][0]['address_components'];
-    ind = len(resp);
+    def getComponent(resp, type):
+        for i in resp:
+            if type in i['types']:
+                return i['short_name']
+            
     return {'geometry': response['results'][0]['geometry'],
-            'geocode':{'country': resp[ind-1]['short_name'],
-                       'state': resp[ind-2]['short_name'],
-                       'city': resp[ind-3]['short_name']}};
+            'geocode':{'country': getComponent(resp, 'country'),
+                       'state': getComponent(resp, 'administrative_area_level_1'),
+                       'city': getComponent(resp, 'locality')}};

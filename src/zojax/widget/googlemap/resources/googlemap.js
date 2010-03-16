@@ -91,11 +91,19 @@ zojax.googlemap = {
                     coder.geocode({'latLng': marker.getPosition()}, function(response, status) {
                         if (status == google.maps.GeocoderStatus.OK) {
                             try {
-                                var resp = response[1].address_components;
+                                var resp = response[0].address_components;
                                 var ind = resp.length;
-                                var geocode = {'country': resp[ind-1].short_name,
-                                               'state': resp[ind-2].short_name,
-                                               'city': resp[ind-3].short_name};
+                                function getComponent(resp, type) {
+                                    for (var i = 0; i < ind; i++) {
+                                        for (var k = 0; k < resp[i].types.length; k++) {
+                                            if (type == resp[i].types[k])
+                                                return resp[i].short_name
+                                        }
+                                    }
+                                };
+                                var geocode = {'country': getComponent(resp, 'country'),
+                                               'state': getComponent(resp, 'administrative_area_level_1'),
+                                               'city': getComponent(resp, 'locality')};
                                 document.getElementById(config.id).value = $.toJSON(
                                     {'position': {'latitude': marker.getPosition().lat(),
                                                   'longitude': marker.getPosition().lng()
