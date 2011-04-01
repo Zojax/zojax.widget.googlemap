@@ -47,5 +47,5 @@ def geocode(address):
     # This retrieves the URL from Google, parses out the longitude and latitude,
     # and then returns them as a string.
     coordinates = urllib.urlopen(url).read().split(',')
-    coorText = '%s,%s' % (coordinates[2],coordinates[3])
+    coorText = '%s,%s' % (coordinates[3],coordinates[2])
     return coorText
