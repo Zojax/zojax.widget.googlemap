@@ -22,7 +22,7 @@ class UnknownGeocodeError(Exception):
     """Unknown geocode"""
 
 
-def geocode(**kw):
+def reverse_geocode(**kw):
     kw['sensor'] = 'true'
     url = 'http://maps.google.com/maps/api/geocode/json?%s'%urllib.urlencode(kw)
     response = simplejson.load(urllib.urlopen(url))
@@ -38,3 +38,14 @@ def geocode(**kw):
             'geocode':{'country': getComponent(resp, 'country'),
                        'state': getComponent(resp, 'administrative_area_level_1'),
                        'city': getComponent(resp, 'locality')}};
+                       
+def geocode(address):
+    mapsUrl = 'http://maps.google.com/maps/geo?q='
+    # This joins the parts of the URL together into one string.
+    url = ''.join([mapsUrl,urllib.quote(address),'&output=csv'])
+        
+    # This retrieves the URL from Google, parses out the longitude and latitude,
+    # and then returns them as a string.
+    coordinates = urllib.urlopen(url).read().split(',')
+    coorText = '%s,%s' % (coordinates[3],coordinates[2])
+    return coorText
