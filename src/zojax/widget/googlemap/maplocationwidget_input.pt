@@ -2,8 +2,8 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       tal:omit-tag="">
     <div class="geocode-search">
-      <input type="textbox" value="Enter location" tal:attributes="id view/addressId">
-      <input type="button" value="Search for location" tal:attributes="id view/geocodeButtonId">
+      <input type="textbox" value="Enter location" i18n:attributes="value" tal:attributes="id view/addressId" />
+      <input type="button" value="Search for location" i18n:attributes="value" tal:attributes="id view/geocodeButtonId" />
     </div>
     <input id="" name="" class="" title="" lang="" disabled=""
            readonly="" alt="" tabindex="" accesskey="" size="" maxlength=""
