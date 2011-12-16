@@ -1,0 +1,90 @@
+##############################################################################
+#
+# Copyright (c) 2003-2004 Zope Corporation and Contributors.
+# All Rights Reserved.
+#
+# This software is subject to the provisions of the Zope Public License,
+# Version 2.1 (ZPL).  A copy of the ZPL should accompany this distribution.
+# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY AND ALL EXPRESS OR IMPLIED
+# WARRANTIES ARE DISCLAIMED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
+# FOR A PARTICULAR PURPOSE.
+#
+##############################################################################
+msgid ""
+msgstr ""
+"Project-Id-Version: Development/Unknown\n"
+"POT-Creation-Date: Thu Dec  8 22:19:44 2011\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Zope 3 Developers <zope3-dev@zope.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: zope/app/locales/extract.py\n"
+
+#: src/zojax/widget/googlemap/interfaces.py:30
+msgid "Enabled"
+msgstr ""
+
+#: src/zojax/widget/googlemap/interfaces.py:39
+msgid "Type"
+msgstr ""
+
+#: src/zojax/widget/googlemap/interfaces.py:58
+msgid "Latitude"
+msgstr ""
+
+#: src/zojax/widget/googlemap/interfaces.py:63
+msgid "Longitude"
+msgstr ""
+
+#: src/zojax/widget/googlemap/interfaces.py:64
+#: src/zojax/widget/googlemap/interfaces.py:83
+msgid "The exact longitude of a place on Earth."
+msgstr ""
+
+#: src/zojax/widget/googlemap/interfaces.py:77
+msgid "Center Latitude"
+msgstr ""
+
+#: src/zojax/widget/googlemap/interfaces.py:82
+msgid "Center Longitude"
+msgstr ""
+
+#: src/zojax/widget/googlemap/interfaces.py:87
+msgid "Zoom level"
+msgstr ""
+
+#: src/zojax/widget/googlemap/interfaces.py:88
+msgid "Map zoom level."
+msgstr ""
+
+#: src/zojax/widget/googlemap/interfaces.py:93
+msgid "Geocode"
+msgstr ""
+
+#: src/zojax/widget/googlemap/interfaces.py:94
+msgid "Political geocode."
+msgstr ""
+
+#: src/zojax/widget/googlemap/maplocation.py:59
+msgid "Click on the map to place a marker"
+msgstr ""
+
+#: src/zojax/widget/googlemap/vocabulary.py:11
+msgid "Hybrid. This map type displays a transparent layer of major streets on satellite images."
+msgstr ""
+
+#: src/zojax/widget/googlemap/vocabulary.py:12
+msgid "Roadmap. This map type displays a normal street map."
+msgstr ""
+
+#: src/zojax/widget/googlemap/vocabulary.py:13
+msgid "Satellite. This map type displays satellite images."
+msgstr ""
+
+#: src/zojax/widget/googlemap/vocabulary.py:14
+msgid "Terrain. This map type displays maps with physical features such as terrain and vegetation."
+msgstr ""
+
