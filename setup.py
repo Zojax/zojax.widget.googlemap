@@ -67,6 +67,7 @@ setup(name='zojax.widget.googlemap',
                                   'zojax.content.type',
                                   'zojax.content.forms',
                                   'zojax.persistent.fields',
+                                  'zojax.pageelement',
                                   ]),
       include_package_data = True,
       zip_safe = False

@@ -45,15 +45,6 @@ Google maps widget
 Select widgets
 --------------
 
-    >>> admin = Browser()
-    >>> admin.addHeader("Authorization", "Basic mgr:mgrpw")
-    >>> admin.handleErrors = False
-    >>> admin.open('http://localhosr/settings/')
-    >>> admin.getLink('Portal skin').click()
-    >>> admin.getControl(name="form.widgets.layers:list").value = ['googlemap']
-    >>> admin.getControl('Save').click()
-
-
 Date widget
 -----------
 
@@ -67,27 +58,13 @@ Included js
     >>> print user.contents
     <html>
     ...
-    <script type="text/javascript" src="http://localhosr/.../jquery.js"></script>
-    <script type="text/javascript" src="http://localhosr/.../extjs.js"></script>
-    <link rel="stylesheet" type="text/css" href="http://localhosr/.../extjs.css" />
-    <script type="text/javascript" src="http://localhosr/.../extjs-widgets.js"></script>
-    <script type="text/javascript">
-    Ext.EventManager.onDocumentReady(function() {
-       var dateField = new Ext.form.DateField({
-          applyTo: 'form-widgets-date', name: 'form.widgets.date', format: 'm/d/y'});
-       dateField.setValue('01/01/09');
-    })</script>
+      <label for="content-widgets-title" title="Item title.">Title</label>
     ...
-    <div class="z-form-field">
-      <label for="form-widgets-date" title="">Date</label>
-      <span class="z-form-fieldRequired">&nbsp;</span>
-      <div class="z-form-help"></div>
-      <div>
-         <input id="form-widgets-date"
-           name="form.widgets.date"
-           class="widget-extjs-date required date-field"
-           value="01/01/09" type="text" />
-    </div>
+      <label for="content-widgets-description" title="Brief summary of your content item.">Description</label>
+      <div class="z-form-help">Brief summary of your content item.</div>
+    ...
+      <label for="content-edit-widgets-shortname" title="Should not contain spaces, underscores or mixed case. Short Name is part of the item's web address.">Short Name</label>
+      <div class="z-form-help">Should not contain spaces, underscores or mixed case. Short Name is part of the item's web address.</div>
     ...
     </html>
 
@@ -98,7 +75,7 @@ set value
     >>> print user.contents
     <html>
     ...
-    <div class="error">time data did not match format:  data=15/a3/09  fmt=%m/%d/%y</div>
+      <div class="error">The datetime string did not match the pattern u'M/d/yy'.</div>
     ...
     </html>
 
@@ -113,38 +90,12 @@ Datetime widget
 ---------------
 
     >>> user.open('http://localhosr/page2/context.html')
-    >>> print user.contents
-    <html>
-    ...
-    <script type="text/javascript" src="http://localhosr/.../jquery.js"></script>
-    <script type="text/javascript" src="http://localhosr/.../extjs.js"></script>
-    <link rel="stylesheet" type="text/css" href="http://localhosr/.../extjs.css" />
-    <script type="text/javascript" src="http://localhosr/.../extjs-widgets.js"></script>
-    <script type="text/javascript">
-    Ext.EventManager.onDocumentReady(function(){
-     var dateField = new Ext.ux.form.DateTime({
-          applyTo:'form-widgets-date', name:'form.widgets.date', timeFormat:'H:i'});
-     dateField.setValue('2009-01-01 01:01');
-     });</script>
-    ...
-    <label for="form-widgets-date" title="">Datetime</label>
-    <span class="z-form-fieldRequired">&nbsp;</span>
-    <div class="z-form-help"></div>
-    <div>
-       <input id="form-widgets-date"
-            name="form.widgets.date"
-            class="widget-extjs-datetime required datetime-field"
-            style="display: none" value="2009-01-01 01:01"
-            type="text" />
-    ...
-    </html>
-
     >>> user.getControl('Datetime').value = '2009-55-03 05:dd'
     >>> user.getControl(name="content.edit.buttons.save").click()
     >>> print user.contents
     <html>
     ...
-    <div class="error">time data did not match format:  data=2009-55-03 05:dd  fmt=%Y-%m-%d %H:%M:%S</div>
+      <div class="error">The datetime string did not match the pattern u'M/d/yy h:mm a'.</div>
     ...
     </html>
 
@@ -158,37 +109,12 @@ Time widget
 ---------------
 
     >>> user.open('http://localhosr/page3/context.html')
-    >>> print user.contents
-    <html>
-    ...
-    <script type="text/javascript" src="http://localhosr/.../jquery.js"></script>
-    <script type="text/javascript" src="http://localhosr/.../extjs.js"></script>
-    <link rel="stylesheet" type="text/css" href="http://localhosr/.../extjs.css" />
-    <script type="text/javascript" src="http://localhosr/.../extjs-widgets.js"></script>
-    <script type="text/javascript">
-    Ext.EventManager.onDocumentReady(function() {
-       var timeField = new Ext.form.TimeField({
-          applyTo: 'form-widgets-date', name: 'form.widgets.date', format: 'H:i:s'});
-       timeField.setValue('01:01:01');
-    })</script>
-    ...
-    <label for="form-widgets-date" title="">Time</label>
-      <span class="z-form-fieldRequired">&nbsp;</span>
-      <div class="z-form-help"></div>
-      <div>
-         <input id="form-widgets-date"
-           name="form.widgets.date"
-           class="widget-extjs-time required time-field"
-           value="01:01:01" type="text" />
-    ...
-    </html>
-
     >>> user.getControl('Time').value = '10:00:dd'
     >>> user.getControl(name="content.edit.buttons.save").click()
     >>> print user.contents
     <html>
     ...
-    <div class="error">time data did not match format:  data=10:00:dd  fmt=%H:%M:%S</div>
+      <div class="error">The datetime string did not match the pattern u'h:mm a'.</div>
     ...
     </html>
 
@@ -196,6 +122,6 @@ Time widget
     >>> user.getControl(name="content.edit.buttons.save").click()
 
     >>> page3.date
-    datetime.time(10, 10, 10, tzinfo=<UTC>)
+    datetime.time(1, 1, 1)
 
     >>> setSite(None)
